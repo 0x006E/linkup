@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-export const commentSchema = new Schema(
+export const CommentSchema = new Schema(
   {
     content: { type: String, required: true },
     userId: { type: Schema.Types.ObjectId, required: true },
@@ -9,4 +9,4 @@ export const commentSchema = new Schema(
   { timestamps: true }
 );
 
-export const Comment = model("Comment", commentSchema);
+export const Comment = model("Comment", CommentSchema);

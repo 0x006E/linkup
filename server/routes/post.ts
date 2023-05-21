@@ -1,5 +1,10 @@
 import express from "express";
+import commentRouter from "./comment";
+import likeRouter from "./like";
 const router = express.Router();
+
+router.use("/likes", likeRouter);
+router.use("/comments", commentRouter);
 
 router.get("/", function (req, res) {});
 

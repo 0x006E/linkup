@@ -1,13 +1,16 @@
 {
   "folders": [
     {
-      "path": "client"
+      "name": "workspace",
+      "path": "."
     },
     {
+      "name": "server",
       "path": "server"
     },
     {
-      "path": "."
+      "name": "client",
+      "path": "client"
     }
   ],
   "settings": {}

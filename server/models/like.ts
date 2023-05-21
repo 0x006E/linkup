@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-export const likeSchema = new Schema(
+export const LikeSchema = new Schema(
   {
     userId: { type: Schema.Types.ObjectId, required: true },
     postId: { type: Schema.Types.ObjectId, required: true, ref: "Post" },
@@ -8,4 +8,4 @@ export const likeSchema = new Schema(
   { timestamps: true }
 );
 
-export const Like = model("Like", likeSchema);
+export const Like = model("Like", LikeSchema);
