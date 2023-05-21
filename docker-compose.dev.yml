@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  mongodb:
+    image: mongo
+    restart: unless-stopped
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongodb_data:/data/db
+
+  devcontainer:
+    image: mcr.microsoft.com/devcontainers/typescript-node:0-18
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/linkup
+    volumes:
+      - .:/workspace:cached
+    network_mode: service:mongodb
+    command: sleep infinity
+
+volumes:
+  mongodb_data:

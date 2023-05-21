@@ -1,0 +1,20 @@
+{
+  "name": "linkup",
+  "version": "1.0.0",
+  "description": "A simple social media app",
+  "main": "index.js",
+  "repository": "https://github.com/0x006e/linkup",
+  "author": "Nithin S Varrier <nithin486@hotmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "start": "concurrently \"yarn workspace server start\" \"yarn workspace client start\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.1"
+  }
+}
