@@ -9,6 +9,8 @@ router.post("/logout", logoutController)
 
 router.post("/register", checkLoggedIn, registerController)
 
-router.post("/forgot-password", function (req, res) {})
+router.post("/forgot-password", (req, res) => {
+  res.send("forgot-password")
+})
 
 export default router

@@ -13,9 +13,14 @@ content-type: application/json
 
 {
     "email": "john@example.com",
-    "password": "help"
+    "password": "helphelp"
 }
 ###
 
 GET http://localhost:3000/user
+Content-Type: application/json
+
+###
+
+GET http://localhost:3000/auth/logout
 Content-Type: application/json
