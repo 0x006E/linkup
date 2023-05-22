@@ -34,16 +34,24 @@
     "@types/morgan": "^1.9.4",
     "@types/node": "^20.2.3",
     "@types/passport": "^1.0.12",
+    "@typescript-eslint/eslint-plugin": "^5.59.7",
+    "@typescript-eslint/parser": "^5.59.7",
+    "eslint": "^8.41.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.22",
     "pino-pretty": "^10.0.0",
+    "prettier": "^2.8.8",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
   },
   "scripts": {
     "build": "npx tsc",
-    "start": "nodemon app.ts | pino-pretty ",
-    "dev:debug": "nodemon app.ts -- --inspect"
+    "start": "TZ='UTC' nodemon ./src/app.ts | pino-pretty ",
+    "lint": "eslint src/**/*.ts",
+    "format": "eslint src/**/*.ts --fix"
   },
   "installConfig": {
     "hoistingLimits": "dependencies"

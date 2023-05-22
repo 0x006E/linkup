@@ -1,10 +1,6 @@
 {
   "folders": [
     {
-      "name": "workspace",
-      "path": "."
-    },
-    {
       "name": "server",
       "path": "server"
     },
