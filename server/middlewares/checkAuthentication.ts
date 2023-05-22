@@ -1,4 +1,6 @@
+import { badRequest } from "@hapi/boom";
 import { NextFunction, Request, Response } from "express";
+import morgan from "morgan";
 
 export const checkAuthenticated = (
   req: Request,
@@ -9,6 +11,7 @@ export const checkAuthenticated = (
     return next();
   }
   res.status(401).json({ message: "Unauthorized" });
+  morgan("dev Unauthorized");
 };
 
 export const checkLoggedIn = (
@@ -17,7 +20,7 @@ export const checkLoggedIn = (
   next: NextFunction
 ) => {
   if (req.isAuthenticated()) {
-    return res.status(200).json({ message: "Logged in" });
+    return badRequest("You are already logged in");
   }
   next();
 };

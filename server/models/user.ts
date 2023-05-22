@@ -1,23 +1,33 @@
-import { Schema, model } from "mongoose";
+import { Schema, Types, model } from "mongoose";
 import passportLocalMongoose from "passport-local-mongoose";
-import isEmail from "validator/lib/isEmail";
+import { z } from "zod";
 
-export const UserSchema = new Schema(
+export const UserZodSchema = z.object({
+  _id: z.custom<Types.ObjectId>(),
+  name: z.string().min(2).max(30),
+  email: z.string().email(),
+  password: z
+    .string()
+    .min(8)
+    .max(100)
+    .refine((value) => value.trim() === value) // No leading or trailing white spaces
+    .refine((value) => !/\s/.test(value)),
+});
+
+export const UserMongooseSchema = new Schema(
   {
-    name: { type: String, required: true },
-    email: {
-      type: String,
-      required: true,
-      validate: [isEmail, "invalid email"],
-    },
+    name: { type: String, minlength: 2, maxLength: 30 },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
   },
   {
     timestamps: true,
   }
 );
 
-UserSchema.plugin(passportLocalMongoose, {
+UserMongooseSchema.plugin(passportLocalMongoose, {
   usernameField: "email",
 });
 
-export const User = model("User", UserSchema);
+export type User = z.infer<typeof UserZodSchema>;
+export const User = model("User", UserMongooseSchema);
