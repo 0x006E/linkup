@@ -3,7 +3,7 @@ import { loginController, logoutController, registerController } from "../contro
 import { checkLoggedIn } from "../middlewares/checkAuthentication"
 const router = express.Router()
 
-router.post("/login", checkLoggedIn, loginController)
+router.post("/login", checkLoggedIn, passport.authenticate("local"), loginController)
 
 router.post("/logout", logoutController)
 

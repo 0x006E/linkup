@@ -5,18 +5,17 @@ import { z } from "zod"
 import { zParse } from "../helpers/zParse"
 import { User, UserZodSchema } from "../models/user"
 
-export const loginController = (req: Request, res: Response) =>
-  passport.authenticate("local")(req, res, () => {
-    req.log.info("Login successful")
-    return res.status(200).json({ message: "Login successful" })
-  })
-
+export const loginController = (req: Request, res: Response) => {
+  req.log.info("Login successful")
+  return res.status(200).json({ message: "Login successful" })
+}
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const logoutController = (req: Request, res: Response) => {
   if (!req.isAuthenticated()) {
     return unauthorized("You are not logged in")
   }
-  return req.logout((e) => req.log.error(e))
+  req.logout((e) => req.log.error(e))
+  return res.status(200).json({ message: "Logout successful" })
 }
 
 export const registerController = async (req: Request, res: Response) => {
