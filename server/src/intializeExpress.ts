@@ -47,7 +47,7 @@ export default function initializeExpress(app: Express) {
   passport.use(User.createStrategy())
   passport.serializeUser(User.serializeUser())
   passport.deserializeUser(User.deserializeUser())
-  app.use("/", indexRouter)
+  app.use("/api", indexRouter)
   setupRedoc(app)
   app.use(errorHandler)
 }

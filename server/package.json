@@ -52,7 +52,7 @@
   },
   "scripts": {
     "build": "npx tsc",
-    "start": "TZ='UTC' nodemon ./swagger.ts | pino-pretty ",
+    "start": "TZ='UTC' nodemon ./swagger.ts -e ts | pino-pretty ",
     "lint": "eslint src/**/*.ts",
     "format": "eslint src/**/*.ts --fix",
     "swagger-autogen": "ts-node ./swagger.ts"

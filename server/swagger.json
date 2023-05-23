@@ -158,10 +158,17 @@
         }
       }
     },
-    "/posts/likes/": {
+    "/posts/{postId}/likes/": {
       "get": {
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -173,7 +180,14 @@
       },
       "post": {
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -185,7 +199,14 @@
       },
       "delete": {
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -196,10 +217,17 @@
         }
       }
     },
-    "/posts/comments/": {
+    "/posts/{postId}/comments/": {
       "get": {
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -210,10 +238,16 @@
         }
       }
     },
-    "/posts/comments/{commentId}": {
+    "/posts/{postId}/comments/{commentId}": {
       "post": {
         "description": "",
         "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
           {
             "name": "commentId",
             "in": "path",
@@ -234,6 +268,12 @@
         "description": "",
         "parameters": [
           {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
             "name": "commentId",
             "in": "path",
             "required": true,
@@ -252,6 +292,12 @@
       "delete": {
         "description": "",
         "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
           {
             "name": "commentId",
             "in": "path",

@@ -6,8 +6,8 @@ import likeRouter from "./like"
 
 const postRouter = express.Router()
 
-postRouter.use("/likes", likeRouter)
-postRouter.use("/comments", commentRouter)
+postRouter.use("/:postId/likes", likeRouter)
+postRouter.use("/:postId/comments", commentRouter)
 
 postRouter.get("/", checkAuthenticated, getPosts)
 
