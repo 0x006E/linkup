@@ -2558,6 +2558,7 @@ __metadata:
     pino-http: ^8.3.3
     pino-pretty: ^10.0.0
     prettier: ^2.8.8
+    redoc-express: ^2.1.0
     swagger-autogen: ^2.23.1
     ts-node: ^10.9.1
     typescript: ^5.0.4
@@ -3506,6 +3507,13 @@ __metadata:
   version: 0.2.0
   resolution: "real-require@npm:0.2.0"
   checksum: fa060f19f2f447adf678d1376928c76379dce5f72bd334da301685ca6cdcb7b11356813332cc243c88470796bc2e2b1e2917fc10df9143dd93c2ea608694971d
+  languageName: node
+  linkType: hard
+
+"redoc-express@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "redoc-express@npm:2.1.0"
+  checksum: c33d739db596e511c071815310e17390f3b1dcfdb20e96e21b30791a0f09a21b13f842692cf100a58f5fb6fb222fcc146fba8ba18cf0a9c1407dd4b72f6d7fba
   languageName: node
   linkType: hard
 

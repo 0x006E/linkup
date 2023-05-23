@@ -1,11 +1,18 @@
 import { unauthorized } from "@hapi/boom"
 import { Request, Response } from "express"
-import passport from "passport"
 import { z } from "zod"
 import { zParse } from "../helpers/zParse"
 import { User, UserZodSchema } from "../models/user"
 
 export const loginController = (req: Request, res: Response) => {
+  /*  #swagger.parameters['obj'] = {
+                in: 'body',
+                description: 'Authentication using email and password',
+                schema: {
+                    $email: 'john@example.com',
+                    $password: 'password',
+                }
+        } */
   req.log.info("Login successful")
   return res.status(200).json({ message: "Login successful" })
 }
