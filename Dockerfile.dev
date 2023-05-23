@@ -1,5 +1,5 @@
 FROM node:lts-alpine
 
-RUN apk --no-cache add git ssh
+RUN apk --no-cache add git openssh
 
 ENTRYPOINT [ "/bin/sh" ]
