@@ -14,7 +14,7 @@ const DefaultLayout: FC<PropsWithChildren<DefaultLayoutProps>> = function ({
   return (
     <>
       <Navbar />
-      <div className="flex items-start pt-16">
+      <div className="flex items-stretch flex-1 ">
         <Sidebar />
         <MainContent isFooter={isFooter}>{children}</MainContent>
       </div>
@@ -27,7 +27,7 @@ const MainContent: FC<PropsWithChildren<DefaultLayoutProps>> = function ({
   isFooter,
 }) {
   return (
-    <main className="relative h-full w-full overflow-y-auto bg-gray-50 dark:bg-gray-900 lg:ml-64">
+    <main className="relative flex-1 flex flex-col overflow-y-auto bg-gray-50 dark:bg-gray-900 border-gray-200 border shadow-xl rounded-md">
       {children}
       {isFooter && (
         <div className="mx-4 mt-4">

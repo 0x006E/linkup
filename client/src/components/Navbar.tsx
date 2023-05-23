@@ -1,9 +1,8 @@
-import { Button, DarkThemeToggle, Navbar } from "flowbite-react";
-import type { FC } from "react";
+import { DarkThemeToggle, Navbar } from "flowbite-react";
 
-const ExampleNavbar: FC = function () {
+export default function NavbarPart() {
   return (
-    <Navbar fluid>
+    <Navbar fluid className="border border-bottom-1 border-gray-200">
       <div className="w-full p-3 lg:px-5 lg:pl-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
@@ -15,16 +14,6 @@ const ExampleNavbar: FC = function () {
             </Navbar.Brand>
           </div>
           <div className="flex items-center gap-3">
-            <iframe
-              height="30"
-              src="https://ghbtns.com/github-btn.html?user=themesberg&repo=flowbite-react-admin-dashboard&type=star&count=true&size=large"
-              title="GitHub"
-              width="90"
-              className="hidden sm:block"
-            />
-            <Button color="primary" href="https://flowbite.com/pro/">
-              Upgrade to Pro
-            </Button>
             <DarkThemeToggle />
           </div>
         </div>
@@ -33,4 +22,3 @@ const ExampleNavbar: FC = function () {
   );
 };
 
-export default ExampleNavbar;
