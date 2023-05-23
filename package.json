@@ -15,10 +15,7 @@
     "start": "concurrently \"yarn workspace linkup-be start\" \"yarn workspace linkup-fe dev\""
   },
   "devDependencies": {
-    "concurrently": "^8.0.1",
-    "eslint": "^8.41.0",
-    "prettier": "^2.8.8",
-    "typescript": "^5.0.4"
+    "concurrently": "^8.0.1"
   },
-  "packageManager": "yarn@3.5.1"
+  "packageManager": "yarn@1.22.19"
 }
