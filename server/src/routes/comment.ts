@@ -1,12 +1,20 @@
 import express from "express"
-const router = express.Router()
+import {
+  createPostComment,
+  deletePostComment,
+  getPostComments,
+  updatePostComment
+} from "../controllers/comment.controller"
+import { checkAuthenticated } from "../middlewares/checkAuthentication"
 
-router.get("/", function (req, res) {})
+const commentRouter = express.Router({ mergeParams: true })
 
-router.get("/:commentId", function (req, res) {})
+commentRouter.get("/", checkAuthenticated, getPostComments)
 
-router.put("/:commentId", function (req, res) {})
+commentRouter.post("/:commentId", checkAuthenticated, createPostComment)
 
-router.delete("/:commentId", function (req, res) {})
+commentRouter.put("/:commentId", checkAuthenticated, updatePostComment)
 
-export default router
+commentRouter.delete("/:commentId", checkAuthenticated, deletePostComment)
+
+export default commentRouter

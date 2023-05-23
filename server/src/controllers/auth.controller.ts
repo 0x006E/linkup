@@ -12,7 +12,7 @@ export const loginController = (req: Request, res: Response) => {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const logoutController = (req: Request, res: Response) => {
   if (!req.isAuthenticated()) {
-    return unauthorized("You are not logged in")
+    throw unauthorized("You are not logged in")
   }
   req.logout((e) => req.log.error(e))
   return res.status(200).json({ message: "Logout successful" })

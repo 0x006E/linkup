@@ -1,12 +1,13 @@
 import express from "express"
-const router = express.Router()
+import { getPostLikes, likePost, unlikePost } from "../controllers/like.controller"
+import { checkAuthenticated } from "../middlewares/checkAuthentication"
 
-router.get("/", function (req, res) {})
+const likeRouter = express.Router({ mergeParams: true })
 
-router.get("/:likeId", function (req, res) {})
+likeRouter.get("/", checkAuthenticated, getPostLikes)
 
-router.put("/:likeId", function (req, res) {})
+likeRouter.post("/", checkAuthenticated, likePost)
 
-router.delete("/:likeId", function (req, res) {})
+likeRouter.delete("/", checkAuthenticated, unlikePost)
 
-export default router
+export default likeRouter

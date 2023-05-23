@@ -7,16 +7,17 @@ services:
       - '27017:27017'
     volumes:
       - mongodb_data:/data/db
+    command:
+      --replSet rs0
 
   devcontainer:
-    build: 
+    build:
       dockerfile: Dockerfile.dev
     environment:
       - MONGO_URI=mongodb://mongodb:27017/linkup
     volumes:
       - .:/workspace:cached
     network_mode: service:mongodb
-    command: sleep infinity
 
 volumes:
   mongodb_data:

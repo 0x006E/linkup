@@ -2,16 +2,18 @@ import { PassportLocalModel, Schema, Types, model } from "mongoose"
 import passportLocalMongoose from "passport-local-mongoose"
 import { z } from "zod"
 
+export const PasswordSchema = z
+  .string()
+  .min(8)
+  .max(100)
+  .refine((value) => value.trim() === value) // No leading or trailing white spaces
+  .refine((value) => !/\s/.test(value))
+
 export const UserZodSchema = z.object({
   _id: z.custom<Types.ObjectId>(),
   name: z.string().min(2).max(30),
   email: z.string().email(),
-  password: z
-    .string()
-    .min(8)
-    .max(100)
-    .refine((value) => value.trim() === value) // No leading or trailing white spaces
-    .refine((value) => !/\s/.test(value))
+  password: PasswordSchema
 })
 
 export const UserMongooseSchema = new Schema(

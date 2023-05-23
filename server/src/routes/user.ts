@@ -1,8 +1,10 @@
 import express from "express"
-import { getUserDetails } from "../controllers/user.controller"
+import { getUserDetails, updateUserDetails, updateUserPassword } from "../controllers/user.controller"
 import { checkAuthenticated } from "../middlewares/checkAuthentication"
-const router = express.Router()
+const userRouter = express.Router()
 
-router.get("/", checkAuthenticated, getUserDetails)
+userRouter.get("/", checkAuthenticated, getUserDetails)
+userRouter.post("/", checkAuthenticated, updateUserDetails)
+userRouter.post("/change-password", checkAuthenticated, updateUserPassword)
 
-export default router
+export default userRouter

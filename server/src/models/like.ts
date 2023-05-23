@@ -18,4 +18,4 @@ export const LikeMongooseSchema = new Schema(
 )
 
 export type Like = z.infer<typeof LikeZodSchema>
-export const Like = model("Like", LikeMongooseSchema)
+export const Like = model<Like>("Like", LikeMongooseSchema)

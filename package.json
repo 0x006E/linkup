@@ -15,7 +15,10 @@
     "start": "concurrently \"yarn workspace server start\" \"yarn workspace client start\""
   },
   "devDependencies": {
-    "concurrently": "^8.0.1"
+    "concurrently": "^8.0.1",
+    "eslint": "^8.41.0",
+    "prettier": "^2.8.8",
+    "typescript": "^5.0.4"
   },
   "packageManager": "yarn@3.5.1"
 }

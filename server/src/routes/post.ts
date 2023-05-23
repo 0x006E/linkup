@@ -1,17 +1,20 @@
 import express from "express"
+import { deletePost, getPost, getPosts, updatePost } from "../controllers/post.controller"
+import { checkAuthenticated } from "../middlewares/checkAuthentication"
 import commentRouter from "./comment"
 import likeRouter from "./like"
-const router = express.Router()
 
-router.use("/likes", likeRouter)
-router.use("/comments", commentRouter)
+const postRouter = express.Router()
 
-router.get("/", function (req, res) {})
+postRouter.use("/likes", likeRouter)
+postRouter.use("/comments", commentRouter)
 
-router.get("/:postId", function (req, res) {})
+postRouter.get("/", checkAuthenticated, getPosts)
 
-router.put("/:postId", function (req, res) {})
+postRouter.get("/:postId", checkAuthenticated, getPost)
 
-router.delete("/:postId", function (req, res) {})
+postRouter.put("/:postId", checkAuthenticated, updatePost)
 
-export default router
+postRouter.delete("/:postId", checkAuthenticated, deletePost)
+
+export default postRouter

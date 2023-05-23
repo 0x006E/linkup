@@ -9,7 +9,6 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "streetsidesoftware.code-spell-checker",
         "esbenp.prettier-vscode",
         "ms-azuretools.vscode-docker",
         "github.copilot",

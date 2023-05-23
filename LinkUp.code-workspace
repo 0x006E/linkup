@@ -1,6 +1,10 @@
 {
   "folders": [
     {
+      "name": "workspace",
+      "path": "."
+    },
+    {
       "name": "server",
       "path": "server"
     },
@@ -10,6 +14,12 @@
     }
   ],
   "settings": {
-    "typescript.tsdk": "server/node_modules/typescript/lib"
+    "typescript.tsdk": "workspace/.yarn/sdks/typescript/lib",
+    "typescript.experimental.tsserver.web.enableProjectWideIntellisense": true,
+    "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true,
+    }
   }
 }
