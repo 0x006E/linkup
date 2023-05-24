@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import { UserID } from '../api/models/Like';
 import { GenericResponse } from '../api/services/AuthService';
 import usePostService from '../hooks/usePostService';
+import useAuthStore from '../store';
 
 export interface LikesModalProps {
     show: boolean;
@@ -12,14 +13,14 @@ export interface LikesModalProps {
 }
 
 function LikesModal(props: LikesModalProps) {
-    const { show, onClose, postId, userId } = props;
+    const { show, onClose, postId } = props;
     const { useLikePost, useUnlikePost, useGetPostLikes } = usePostService();
     const { mutateAsync: likePost } = useLikePost;
     const { mutateAsync: unlikePost } = useUnlikePost;
     const { data: likes, isLoading } = useGetPostLikes(postId);
-
-    const isLiked = likes?.some((like) => like.userId._id === userId._id);
-    const ourLikeId = likes?.find(like => like.userId._id === userId._id)?._id
+    const ourUserId = useAuthStore(state => state.details?._id);
+    const isLiked = likes?.some((like) => like.userId._id === ourUserId);
+    const ourLikeId = likes?.find(like => like.userId._id === ourUserId)?._id
 
     const handleLike = () => {
         if (isLiked) {

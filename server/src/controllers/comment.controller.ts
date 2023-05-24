@@ -52,7 +52,7 @@ export const updatePostComment = async (req: Request, res: Response) => {
   const { postId, commentId } = params
   const { content } = body
   await checkPostExists(postId)
-  const comment = await Comment.findByIdAndUpdate(commentId, { content }, { new: true })
+  const comment = await Comment.findOneAndUpdate({ _id: commentId, userId: req.user?._id }, { content }, { new: true })
   if (!comment) {
     throw notFound("Comment not found")
   }
@@ -69,7 +69,7 @@ export const deletePostComment = async (req: Request, res: Response) => {
   const { params } = await zParse(deletePostCommentSchema, req)
   const { postId, commentId } = params
   await checkPostExists(postId)
-  const comment = await Comment.findByIdAndDelete(commentId)
+  const comment = await Comment.findOneAndDelete({ _id: commentId, userId: req.user?._id })
   if (!comment) {
     throw notFound("Comment not found")
   }

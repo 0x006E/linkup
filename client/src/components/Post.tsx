@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import { Post as P } from '../api/models/Post';
 import { GenericResponse } from '../api/services/AuthService';
 import usePostService from '../hooks/usePostService';
+import useAuthStore from '../store';
 import CommentModal from './CommentModal';
 import LikesModal from './LikesModal';
 
@@ -13,6 +14,8 @@ export interface PostProps extends Omit<P, '__v'> { }
 
 function Post(props: PostProps) {
     const { content, userId, _id, createdAt } = props;
+    const ourUserId = useAuthStore(state => state.details?._id);
+    const isOurPost = ourUserId === userId._id;
     const [show, setShow] = useState(false);
     const [showLikes, setShowLikes] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
@@ -64,7 +67,7 @@ function Post(props: PostProps) {
                 <h5 className="text-md text-gray-600 font-italic tracking-tight truncate dark:text-white">
                     {userId.name} posted
                 </h5>
-                <div className='flex'>
+                {isOurPost && <div className='flex'>
                     {!isEditing ? (
                         <>
                             <FaEdit onClick={handleEdit} className="text-blue-500 cursor-pointer" />
@@ -76,7 +79,7 @@ function Post(props: PostProps) {
                             <FaTimes onClick={handleCancel} className="text-red-500 ml-2 cursor-pointer" />
                         </>
                     )}
-                </div>
+                </div>}
             </div>
             {!isEditing ? (
                 <p className="font-normal text-gray-700 dark:text-gray-400 text-lg line-clamp-4">
