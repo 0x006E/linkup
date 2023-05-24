@@ -4,6 +4,7 @@ import express, { Express } from "express"
 import session from "express-session"
 import mongoose from "mongoose"
 import passport from "passport"
+import path from "path"
 import redoc from "redoc-express"
 import { pinoHttpLogger } from "./helpers/pinoLogger"
 import errorHandler from "./middlewares/errorHandler"
@@ -21,6 +22,7 @@ function setupRedoc(app: Express) {
       specUrl: "/docs/swagger.json"
     })
   )
+
 }
 export default function initializeExpress(app: Express) {
   app.use(pinoHttpLogger)
@@ -51,6 +53,8 @@ export default function initializeExpress(app: Express) {
   passport.serializeUser(User.serializeUser())
   passport.deserializeUser(User.deserializeUser())
   app.use("/", indexRouter)
+  app.use(express.static('frontend'));
+  app.get('*', (req, res) => { res.sendFile(path.resolve(__dirname, 'frontend', 'index.html')); });
   setupRedoc(app)
   app.use(errorHandler)
 }
