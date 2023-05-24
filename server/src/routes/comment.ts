@@ -11,7 +11,7 @@ const commentRouter = express.Router({ mergeParams: true })
 
 commentRouter.get("/", checkAuthenticated, getPostComments)
 
-commentRouter.post("/:commentId", checkAuthenticated, createPostComment)
+commentRouter.post("/", checkAuthenticated, createPostComment)
 
 commentRouter.put("/:commentId", checkAuthenticated, updatePostComment)
 

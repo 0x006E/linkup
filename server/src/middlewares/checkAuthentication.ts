@@ -1,18 +1,49 @@
-import { badRequest } from "@hapi/boom"
+import { unauthorized } from "@hapi/boom"
 import { NextFunction, Request, Response } from "express"
-import morgan from "morgan"
+import { PassportLocalModel, Types } from "mongoose"
+import passport from "passport"
+import { User } from "../models/user"
+
+type _User = Omit<User, "password">
+
+declare global {
+  namespace Express {
+    interface User extends PassportLocalModel<_User> {
+      _id: Types.ObjectId
+    }
+  }
+}
+
 
 export const checkAuthenticated = (req: Request, res: Response, next: NextFunction) => {
   if (req.isAuthenticated()) {
-    return next()
+    next()
+  } else {
+  throw unauthorized("You are not logged in")
   }
-  morgan("dev Unauthorized")
-  return res.status(401).json({ message: "Unauthorized" })
 }
 
 export const checkLoggedIn = (req: Request, res: Response, next: NextFunction) => {
   if (req.isAuthenticated()) {
-    return badRequest("You are already logged in")
+    return res.json("You are already logged in")
   }
   next()
+}
+
+
+export const passportAuth = (req: Request, res: Response, next: NextFunction) => {
+  passport.authenticate('local', (err:Error, user:any, info:any) => {
+    if (err) {
+      return next(err); // will generate a 500 error
+    }
+    if (!user) {
+      return res.status(401).send({ message: info.message });
+    }
+    req.login(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+      return res.status(202).send({ message: 'Authentication succeeded' });    
+    });
+})(req, res, next);
 }

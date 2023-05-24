@@ -1,5 +1,5 @@
 import express from "express"
-import { deletePost, getPost, getPosts, updatePost } from "../controllers/post.controller"
+import { createPost, deletePost, getPost, getPosts, updatePost } from "../controllers/post.controller"
 import { checkAuthenticated } from "../middlewares/checkAuthentication"
 import commentRouter from "./comment"
 import likeRouter from "./like"
@@ -10,6 +10,8 @@ postRouter.use("/:postId/likes", likeRouter)
 postRouter.use("/:postId/comments", commentRouter)
 
 postRouter.get("/", checkAuthenticated, getPosts)
+
+postRouter.post("/", checkAuthenticated, createPost)
 
 postRouter.get("/:postId", checkAuthenticated, getPost)
 

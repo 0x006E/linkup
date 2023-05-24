@@ -3,6 +3,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 #root {
-    @apply min-h-screen dark:bg-gray-800 flex flex-col;
+    @apply h-screen dark:bg-gray-800 flex flex-col flex-1 max-h-full;
 }

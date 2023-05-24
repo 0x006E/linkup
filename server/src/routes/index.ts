@@ -5,8 +5,8 @@ import userRouter from "./user"
 
 const indexRouter = express.Router()
 
-indexRouter.use("/auth", authRouter)
-indexRouter.use("/posts", postRouter)
-indexRouter.use("/user", userRouter)
+indexRouter.use("/api/auth", authRouter)
+indexRouter.use("/api/posts", postRouter)
+indexRouter.use("/api/user", userRouter)
 
 export default indexRouter

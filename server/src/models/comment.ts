@@ -13,11 +13,11 @@ export const CommentZodSchema = z.object({
 export const CommentMongooseSchema = new Schema(
   {
     content: { type: String, required: true },
-    userId: { type: Schema.Types.ObjectId, required: true },
-    postId: { type: Schema.Types.ObjectId, required: true }
+    userId: { type: Schema.Types.ObjectId, required: true, ref: 'User' },
+    postId: { type: Schema.Types.ObjectId, required: true, ref: 'Post' }
   },
   { timestamps: true }
 )
 
 export type Comment = z.infer<typeof CommentZodSchema>
-export const Comment = model("Comment", CommentMongooseSchema)
+export const Comment = model<Comment>("Comment", CommentMongooseSchema)

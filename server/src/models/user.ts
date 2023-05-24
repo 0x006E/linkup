@@ -1,4 +1,4 @@
-import { PassportLocalModel, Schema, Types, model } from "mongoose"
+import { Schema, Types, model } from "mongoose"
 import passportLocalMongoose from "passport-local-mongoose"
 import { z } from "zod"
 
@@ -33,12 +33,3 @@ UserMongooseSchema.plugin(passportLocalMongoose, {
 export type User = z.infer<typeof UserZodSchema>
 export const User = model("User", UserMongooseSchema)
 
-type _User = Omit<User, "password">
-
-declare global {
-  namespace Express {
-    interface User extends PassportLocalModel<_User> {
-      _id: Types.ObjectId
-    }
-  }
-}

@@ -1,4 +1,4 @@
-POST http://localhost:3000/auth/register
+POST http://localhost:3000/api/auth/register
 content-type: application/json
 
 {
@@ -8,7 +8,7 @@ content-type: application/json
 }
 ###
 
-POST http://localhost:3000/auth/login
+POST http://localhost:3000/api/auth/login
 content-type: application/json
 
 {
@@ -22,5 +22,35 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3000/auth/logout
+POST http://localhost:3000/api/auth/logout
 Content-Type: application/json
+
+
+###
+POST http://localhost:3000/api/posts
+Content-Type: application/json
+
+{
+    "content": "This is my first post"
+}
+
+###
+GET http://localhost:3000/api/posts/646def4008b00885dda3e2bf/comments
+
+###
+POST http://localhost:3000/api/posts/646def4008b00885dda3e2bf/comments
+Content-Type: application/json
+
+{
+    "content": "This is my first comment"
+}
+###
+DELETE  http://localhost:3000/api/posts/646def4008b00885dda3e2bf/comments/646df62a1e1f0029f42d8df8
+
+###
+PUT http://localhost:3000/api/posts/646def4008b00885dda3e2bf/comments/646df681c90f93b3371e5926
+Content-Type: application/json
+
+{
+    "content": "This is my first comment edited"
+}

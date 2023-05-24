@@ -1,0 +1,9 @@
+{
+    "editor.formatOnSave": true,
+    "prettier.prettierPath": "",
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true,
+        "source.organizeImports": true
+        
+    }
+}

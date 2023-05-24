@@ -25,7 +25,10 @@ function setupRedoc(app: Express) {
 export default function initializeExpress(app: Express) {
   app.use(pinoHttpLogger)
   app.use(express.json())
-  app.use(cors())
+  app.use(cors({
+    origin: true,
+    credentials: true,
+  }))
   app.use(
     session({
       secret: "keyboard cat",
@@ -47,7 +50,7 @@ export default function initializeExpress(app: Express) {
   passport.use(User.createStrategy())
   passport.serializeUser(User.serializeUser())
   passport.deserializeUser(User.deserializeUser())
-  app.use("/api", indexRouter)
+  app.use("/", indexRouter)
   setupRedoc(app)
   app.use(errorHandler)
 }

@@ -18,11 +18,11 @@ export const createPost = async (req: Request, res: Response) => {
     content,
     userId: req.user?._id
   })
-  return res.status(201).json(post)
+  return res.status(201).json(await post.populate('userId', 'name'))
 }
 
 export const getPosts = async (req: Request, res: Response) => {
-  const posts = await Post.find().lean()
+  const posts = await Post.find().populate('userId', 'name').sort({ createdAt: -1 }).lean()
   return res.status(200).json(posts)
 }
 
@@ -36,7 +36,7 @@ export const getPost = async (req: Request, res: Response) => {
   const { postId } = params
   const post = await Post.findById({
     _id: postId
-  })
+  }).populate('userId', 'name').lean()
   if (!post) {
     throw notFound("Post not found")
   }
@@ -56,7 +56,8 @@ export const updatePost = async (req: Request, res: Response) => {
   const post = await checkPostExists(postId)
   post.content = content
   await post.save()
-  return res.status(200).json(post)
+
+  return res.status(200).json(await post.populate('userId', 'name'))
 }
 
 export const deletePost = async (req: Request, res: Response) => {

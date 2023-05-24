@@ -4,7 +4,7 @@ import { checkAuthenticated } from "../middlewares/checkAuthentication"
 const userRouter = express.Router()
 
 userRouter.get("/", checkAuthenticated, getUserDetails)
-userRouter.post("/", checkAuthenticated, updateUserDetails)
+userRouter.put("/", checkAuthenticated, updateUserDetails)
 userRouter.post("/change-password", checkAuthenticated, updateUserPassword)
 
 export default userRouter

@@ -18,7 +18,7 @@
     }
   },
   "paths": {
-    "/auth/login": {
+    "/api/auth/login": {
       "post": {
         "description": "",
         "parameters": [
@@ -48,11 +48,17 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "202": {
+            "description": "Accepted"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         }
       }
     },
-    "/auth/logout": {
+    "/api/auth/logout": {
       "post": {
         "description": "",
         "parameters": [],
@@ -63,7 +69,41 @@
         }
       }
     },
-    "/auth/register": {
+    "/api/auth/register": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/api/auth/forgot-password": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/posts/": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
       "post": {
         "description": "",
         "parameters": [],
@@ -74,32 +114,7 @@
         }
       }
     },
-    "/auth/forgot-password": {
-      "post": {
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/posts/": {
-      "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      }
-    },
-    "/posts/{postId}": {
+    "/api/posts/{postId}": {
       "get": {
         "description": "",
         "parameters": [
@@ -113,9 +128,6 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
           }
         }
       },
@@ -132,9 +144,6 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
           }
         }
       },
@@ -151,14 +160,11 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
           }
         }
       }
     },
-    "/posts/{postId}/likes/": {
+    "/api/posts/{postId}/likes/": {
       "get": {
         "description": "",
         "parameters": [
@@ -172,9 +178,6 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
           }
         }
       },
@@ -191,9 +194,6 @@
         "responses": {
           "201": {
             "description": "Created"
-          },
-          "401": {
-            "description": "Unauthorized"
           }
         }
       },
@@ -210,14 +210,11 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
           }
         }
       }
     },
-    "/posts/{postId}/comments/": {
+    "/api/posts/{postId}/comments/": {
       "get": {
         "description": "",
         "parameters": [
@@ -231,14 +228,9 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
           }
         }
-      }
-    },
-    "/posts/{postId}/comments/{commentId}": {
+      },
       "post": {
         "description": "",
         "parameters": [
@@ -247,23 +239,16 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "commentId",
-            "in": "path",
-            "required": true,
-            "type": "string"
           }
         ],
         "responses": {
           "201": {
             "description": "Created"
-          },
-          "401": {
-            "description": "Unauthorized"
           }
         }
-      },
+      }
+    },
+    "/api/posts/{postId}/comments/{commentId}": {
       "put": {
         "description": "",
         "parameters": [
@@ -283,9 +268,6 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
           }
         }
       },
@@ -308,49 +290,37 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
           }
         }
       }
     },
-    "/user/": {
+    "/api/user/": {
       "get": {
         "description": "",
         "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
           }
         }
       },
-      "post": {
+      "put": {
         "description": "",
         "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
           }
         }
       }
     },
-    "/user/change-password": {
+    "/api/user/change-password": {
       "post": {
         "description": "",
         "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
           }
         }
       }

@@ -15,7 +15,7 @@ export const getPostComments = async (req: Request, res: Response) => {
   const { params } = await zParse(getPostCommentSchema, req)
   const { postId } = params
   await checkPostExists(postId)
-  const comments = await Comment.find({ post: postId }).lean()
+  const comments = await Comment.find({ postId: postId }).populate('userId', 'name').lean()
   return res.status(200).json(comments)
 }
 
@@ -34,10 +34,10 @@ export const createPostComment = async (req: Request, res: Response) => {
   await checkPostExists(postId)
   const comment = await Comment.create({
     content,
-    post: postId,
-    user: req.user?._id
+    postId: postId,
+    userId: req.user?._id
   })
-  return res.status(201).json(comment)
+  return res.status(201).json(await comment.populate('userId', 'name'))
 }
 
 export const updatePostComment = async (req: Request, res: Response) => {
@@ -56,7 +56,7 @@ export const updatePostComment = async (req: Request, res: Response) => {
   if (!comment) {
     throw notFound("Comment not found")
   }
-  return res.status(200).json(comment)
+  return res.status(200).json(await comment.populate('userId', 'name'))
 }
 
 export const deletePostComment = async (req: Request, res: Response) => {
